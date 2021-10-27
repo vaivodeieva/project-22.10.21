@@ -5,7 +5,7 @@ function Home() {
     return (
         <div>
 
-            <h2 class="text-center"></h2>
+            {/* <h2 class="text-center"></h2>
             <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" width="100%" height="450px" />
             <div class="slider-info-wrap clearfix pdlr0">
                 <div class="slider-info-content">
@@ -76,7 +76,7 @@ function Home() {
                         </div>
                     </div>
                     </div>
-                    </div>
+                    </div> */}
 
                 </div>
                 )

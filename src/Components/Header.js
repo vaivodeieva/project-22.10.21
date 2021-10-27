@@ -1,175 +1,90 @@
+import '../Assets/Css/Header.css';
+// import $ from 'jquery';
+
 function Header() {
+
 
     return (
         <div>
-            {/* <!-- Navigation Block --> */}
-            <div className="bloc l-bloc" id="nav-bloc">
-                <div className="container">
-                    <nav className="navbar row">
-                        <div className="navbar-header">
-                            <a className="navbar-brand" href="#">Company</a>
-                            <button id="nav-toggle" type="button" className="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
-                                <span className="sr-only">Toggle navigation</span><span className="icon-bar"></span><span className="icon-bar"></span><span className="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div className="collapse navbar-collapse navbar-1">
-                            <ul className="site-navigation nav">
-                                <li>
-                                    <a href="#">about</a>
+
+            <header class="container-fluid bg-white">
+
+                <div class="container px-0 menuContainer">
+                    <nav class="navbar navbar-expand-xl navbar-light align-items-end p-xl-0">
+                        <a class="navbar-brand d-none" href="index.html">
+                            <img src="https://runyoursite.in/wp-content/uploads/2020/02/runyoursite-logo.png" width="180px" class="img-fluid" />
+                        </a>
+
+                        <a href="#mobileMenu" id="mobileBar" class="d-none ml-auto"> <i class="fa fa-bars"></i></a>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-md-auto justify-content-end" id="nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
                                 </li>
-                                <li>
-                                    <a href="#">team</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html">About <span class="sr-only"></span></a>
                                 </li>
-                                <li>
-                                    <a href="#">projects</a>
+                                <li class="nav-item dd">
+                                    <a class="nav-link" href="#">Programs <span class="sr-only"></span></a>
+                                    {/* <ul class="list-unstyled dropdownMenu">
+							<li>
+								<a href="toddlers.html">Toddlers</a>
+							</li>
+							<li>
+								<a href="preschool.html">Preschool</a>
+							</li>
+						</ul> */}
                                 </li>
-                                <li>
-                                    <a href="#">feed</a>
+                                <li class="nav-item dd">
+                                    <a class="nav-link" href="#">Curriculum <span class="sr-only"></span></a>
+                                    {/* <ul class="list-unstyled dropdownMenu">
+							<li>
+								<a href="play-based-learning.html">Play-Based Learning</a>
+							</li>
+							<li>
+								<a href="physical-literacy.html">Physical Literacy</a>
+							</li>
+							<li>
+								<a href="steam-curriculum.html">Steam Curriculum</a>
+							</li>
+						</ul> */}
                                 </li>
-                                <li>
-                                    <a href="#">contacts</a>
+                                <li class="nav-item dd">
+                                    <a class="nav-link" href="#">Parent Corner <span class="sr-only">(Parent Corner)</span></a>
+                                    {/* <ul class="list-unstyled dropdownMenu">
+                                        <li>
+                                            <a href="nutrition.html">Nutrition</a>
+                                        </li>
+                                        <li>
+                                            <a href="parent-reviews.html">Parent Reviews</a>
+                                        </li>
+                                        <li>
+                                            <a href="enrolment.html">Enrolment</a>
+                                        </li>
+                                    </ul> */}
+                                </li>
+                                <li class="nav-item dd">
+                                    <a class="nav-link" href="#">Photo Gallery <span class="sr-only">(Photo Gallery)</span></a>
+                                    {/* <ul class="list-unstyled dropdownMenu">
+                                        <li>
+                                            <a href="bhnM-mississauga.html">BH‘n’M - Mississauga</a>
+                                        </li>
+                                        <li>
+                                            <a href="bhnm-brampton.html">BH‘n’M - Brampton</a>
+                                        </li>
+                                    </ul> */}
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="contact-us.html">Contact Us <span class="sr-only"></span></a>
                                 </li>
                             </ul>
                         </div>
                     </nav>
                 </div>
-            </div>
-            {/* <!-- Navigation Block END --> */}
 
+            </header>
 
-            {/* <!-- Carousel --> */}
-            <div className="container">
-                <div className="row">
-                    {/* <!-- Carousel --> */}
-                    <div id="carousel-example-generic" className="carousel slide" data-ride="carousel">
-                        {/* <!-- Indicators --> */}
-                        <ol className="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" className="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-                        {/* <!-- Wrapper for slides --> */}
-                        <div className="carousel-inner">
-                            <div className="item active">
-                                <img src="https://unsplash.s3.amazonaws.com/batch%209/barcelona-boardwalk.jpg" alt="First slide" />
-                                {/* <!-- Static Header --> */}
-                                <div className="header-text hidden-xs">
-                                    <div className="col-md-12 text-center">
-                                        <h2>
-                                            <span>OUR VISION</span>
-                                        </h2>
-                                        <br />
-                                        <div className="">
-                                            <a className="btn btn-theme btn-sm btn-min-block" href="#">Read More</a></div>
-                                    </div>
-                                </div>
-                                {/* <!-- /header-text --> */}
-                            </div>
-                            <div className="item">
-                                <img src="https://unsplash.s3.amazonaws.com/batch%209/barcelona-boardwalk.jpg" alt="Second slide"/>
-                            {/* <!-- Static Header --> */}
-                                <div className ="header-text hidden-xs">
-                                <div className ="col-md-12 text-center">
-                                <h2>
-                                <span>OUR VISION</span>
-                                </h2>
-                                <br/>
-                                <div className ="">
-                                <a className ="btn btn-theme btn-sm btn-min-block" href="#">Read More</a></div>
-                                </div>
-                                </div>
-                            {/* <!-- /header-text --> */}
-                            </div>
-                            <div className="item">
-                                <img src="https://unsplash.s3.amazonaws.com/batch%209/barcelona-boardwalk.jpg" alt="Third slide" />
-                                {/* <!-- Static Header --> */}
-                                <div className="header-text hidden-xs">
-                                    <div className="col-md-12 text-center">
-                                        <h2>
-                                            <span>OUR VISION</span>
-                                        </h2>
-                                        <br />
-                                        <div className="">
-                                            <a className="btn btn-theme btn-sm btn-min-block" href="#">Read More</a></div>
-                                    </div>
-                                </div>
-                                {/* <!-- /header-text --> */}
-                            </div>
-                        </div>
-                        {/* <!-- Controls --> */}
-                        <a className="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span className="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a className="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span className="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                    {/* <!-- Carousel END --> */}
-                </div>
-            </div>
-
-            {/* <!-- Posts --> */}
-
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-4 col-md-4">
-                        <div className="post news">
-                            <div className="post-img-content">
-                                <img src="http://placehold.it/460x250/e67e22/ffffff&text=Lorem" className="img-responsive" />
-                                <span className="post-date">Lorem Ipsum</span>
-                            </div>
-                            <br />
-                            <div className="content">
-                                <div>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                </div>
-                                <div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-5 col-md-5">
-                        <div className="post work">
-                            <div className="post-img-content">
-                                <img src="http://placehold.it/460x250/2980b9/ffffff&text=Lorem" className="img-responsive" />
-                                <span className="post-date">Lorem Ipsum</span>
-                            </div>
-                            <br />
-                            <div className="content">
-                                <div>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                </div>
-                                <div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-3 col-md-3">
-                        <div className="post feed">
-                            <div className="post-img-content">
-                                <img src="http://placehold.it/460x250/47A447/ffffff&text=Lorem" className="img-responsive" />
-                                <span className="post-date">Lorem Ipsum</span>
-                            </div>
-                            <br />
-                            <div className="content">
-                                <div>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                </div>
-                                <div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        </div >
     )
 }
 
