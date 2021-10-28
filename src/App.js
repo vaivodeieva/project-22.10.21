@@ -4,10 +4,10 @@ import Home from './Views/Home';
 import Header from './Components/Header';
 
 function App() {
-  return (
+    return (
 
-    <div >
-       <Router>
+        <div >
+            <Router>
                 <Header />
                 <Switch>
 
@@ -31,8 +31,8 @@ function App() {
                 {/* <Footer /> */}
             </Router>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;
