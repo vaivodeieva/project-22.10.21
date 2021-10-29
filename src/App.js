@@ -31,9 +31,9 @@ function App() {
                         <Aboutus />
                     </Route>
 
-                    {/* <Route>
+                    <Route>
                         <Page404 />
-                    </Route> */}
+                    </Route>
 
                 </Switch>
                 {/* <Footer /> */}
