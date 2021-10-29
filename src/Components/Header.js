@@ -10,10 +10,10 @@ function Header() {
                 <header>
                     <h1>E-STORE</h1>
                     <nav>
-                        <a href="#">First tab</a>
-                        <a href="#">Second tab</a>
-                        <a href="#">Third tab</a>
-                        <a href="#">Fourth tab</a>
+                        <a href="/">Home</a>
+                        <a href="#">Categories</a>
+                        <a href="#">Cart</a>
+                        <a href="#">About us</a>
                     </nav>
                 </header>
             </main>

@@ -2,6 +2,10 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Views/Home';
 import Header from './Components/Header';
+import Categories from './Views/Categories';
+import Cart from './Views/Cart';
+import Aboutus from './Views/Aboutus';
+
 
 function App() {
     return (
@@ -15,15 +19,19 @@ function App() {
                         <Home />
                     </Route>
 
-                    {/* <Route path="/articles">
-                        <Articles />
+                    <Route path="/categories">
+                        <Categories />
                     </Route>
 
-                    <Route path="/article">
-                        <Article />
+                    <Route path="/cart">
+                        <Cart />
                     </Route>
 
-                    <Route>
+                    <Route path="/aboutus">
+                        <Aboutus />
+                    </Route>
+
+                    {/* <Route>
                         <Page404 />
                     </Route> */}
 
