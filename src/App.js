@@ -5,6 +5,7 @@ import Header from './Components/Header';
 import Categories from './Views/Categories';
 import Cart from './Views/Cart';
 import Aboutus from './Views/Aboutus';
+import Page404 from './Views/Page404';
 
 
 function App() {
