@@ -13,7 +13,7 @@ function Page404() {
                 <span>4</span>
             </section>
             <div className="link-container">
-                <a target="_blank" href="https://www.silocreativo.com/en/creative-examples-404-error-css/" className="more-link">Visit the original article</a>
+                <a target="_blank" href="#" className="more-link">Visit the original article</a>
             </div>
 
         </div>
