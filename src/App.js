@@ -6,6 +6,7 @@ import Categories from './Views/Categories';
 import Cart from './Views/Cart';
 import Aboutus from './Views/Aboutus';
 import Page404 from './Views/Page404';
+import Footer from './Components/Footer';
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
                     </Route>
 
                 </Switch>
-                {/* <Footer /> */}
+                <Footer />
             </Router>
 
         </div>
