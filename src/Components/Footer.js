@@ -1,6 +1,17 @@
 import '../Assets/Css/Footer.css';
+import VanillaTilt from 'vanilla-tilt';
 
 function Footer() {
+
+    VanillaTilt.init(document.querySelectorAll(".redes li a"), {
+        max: 30,
+        speed: 400,
+        glare: true,
+        "max-glare": 1
+      });
+      
+      // Source Code for Vanilla Javascript Tilt: https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js
+      
 
     return (
 
@@ -17,7 +28,6 @@ function Footer() {
       <li data-text="Codepen"><a target="blanck" class="codepen" href="#"><i class="fa fa-codepen" aria-hidden="true"></i></a></li>
     </ul>
   </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
         </div>
     )
