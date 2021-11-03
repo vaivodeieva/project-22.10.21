@@ -27,6 +27,8 @@
   
   .rodape .redes li {
     list-style: none;
+    height: 200px;
+    width: 200px;
   }
   
   .rodape .redes li::before {
