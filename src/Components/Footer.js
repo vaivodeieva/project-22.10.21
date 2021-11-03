@@ -1,25 +1,27 @@
 import '../Assets/Css/Footer.css';
 import VanillaTilt from 'vanilla-tilt';
 
+VanillaTilt.init(document.querySelectorAll(".redes li a"), {
+  max: 30,
+  speed: 400,
+  glare: true,
+  "max-glare": 1
+});
+
 function Footer() {
 
-  VanillaTilt.init(document.querySelectorAll(".redes li a"), {
-    max: 30,
-    speed: 400,
-    glare: true,
-    "max-glare": 1
-  });
 
   // Source Code for Vanilla Javascript Tilt: https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js
 
+  // data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500"
   return (
 
     <div>
 
       <footer className="rodape" id="rodape">
-        <ul className="redes">
+        <ul className="redes" >
           <li data-text="Facebook"><a target="blanck" className="facebook" href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-          <li data-text="Instagram"><a target="blanck" className="instagram" href="#"><i className="fa fa-instagram" aria-hidden="true"></i></a></li>
+          <li data-text="Instagram"><a target="blanck" className="instagram" href="#"><i className="fa fa-instagram" aria-hidden="true" data-tilt></i></a></li>
           <li data-text="Twitter"><a target="blanck" className="twitter" href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
           <li data-text="Youtube"><a target="blanck" className="youtube" href="#"><i className="fa fa-youtube" aria-hidden="true"></i></a></li>
           <li data-text="Linkedin"><a target="blanck" className="linkedin" href="#"><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
