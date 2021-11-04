@@ -1,5 +1,4 @@
 import '../Assets/Css/Header.css';
-// import $ from 'jquery';
 
 function Header() {
 
