@@ -15,7 +15,7 @@ function Home() {
                             <div class="info-item-text">
                                 <div class="info-price font-4"><span></span></div>
                                 <div class="info-temp font-4"><span>local temperature</span> 41° / 105.8°</div>
-                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </p>
+                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
                             </div>
                         </div>
                         <div class="info-item-content">
@@ -32,7 +32,7 @@ function Home() {
                             <div class="info-item-text">
                                 <div class="info-price font-4"><span></span></div>
                                 <div class="info-temp font-4"><span>local temperature</span> 31° / 87.8°</div>
-                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </p>
+                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text </p>
                             </div>
                         </div>
                         <div class="info-item-content">
@@ -48,7 +48,7 @@ function Home() {
                             <div class="info-item-text">
                                 <div class="info-price font-4"><span></span></div>
                                 <div class="info-temp font-4"><span>local temperature</span> Option 2</div>
-                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </p>
+                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
                             </div>
                         </div>
                         <div class="info-item-content">
@@ -64,7 +64,7 @@ function Home() {
                             <div class="info-item-text">
                                 <div class="info-price font-4"><span></span></div>
                                 <div class="info-temp font-4"><span>local temperature</span> 31° / 87.8°</div>
-                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </p>
+                                <p class="info-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
                             </div>
                         </div>
                         <div class="info-item-content">
