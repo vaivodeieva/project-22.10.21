@@ -7,7 +7,7 @@ function Home() {
         <div>
 
             <h2 className="text-center"></h2>
-           <img src={homepicture} className="img-fluid"/>
+           <img src={homepicture} className="img-fluid align-center"/>
             <div className="slider-info-wrap clearfix pdlr0">
                 <div className="slider-info-content">
 
