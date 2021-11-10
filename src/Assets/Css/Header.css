@@ -10,6 +10,11 @@ a {
     color: inherit;
 }
 
+a:hover {
+    color: coral;
+  
+}
+
 /* body {
     font: normal 18px "Open Sans", sans-serif;
     background: #fafafa;
