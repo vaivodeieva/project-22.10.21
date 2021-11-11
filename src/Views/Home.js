@@ -1,9 +1,9 @@
 import '../Assets/Css/Home.css';
 import homepicture from '../Assets/Images/home-pic.png';
-import pic1 from '../Assets/Images/pic1.jpg';
+import pic1 from '../Assets/Images/pic1.gif';
 import pic2 from '../Assets/Images/pic2.jpg';
-import pic3 from '../Assets/Images/pic3.jpeg';
-import pic4 from '../Assets/Images/pic4.jpg';
+import pic3 from '../Assets/Images/pic3.gif';
+import pic4 from '../Assets/Images/pic4.gif';
 
 function Home() {
 
