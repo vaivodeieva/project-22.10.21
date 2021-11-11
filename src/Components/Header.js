@@ -7,7 +7,7 @@ function Header() {
         <div>
             <main>
                 <header>
-                    <h1>E-STORE</h1>
+                    <h1>E-TEAM</h1>
                     <nav>
                         <a href="/">Home</a>
                         <a href="/categories">Categories</a>
