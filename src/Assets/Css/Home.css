@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 1;
     bottom: 0;
-    height: 60px;
+    height: 50px;
     width: 100%;
     overflow: hidden;
     -webkit-transition: all 0.75s;
@@ -390,7 +390,7 @@
   @media (max-width: 1024px) {
     .th5 {
       font-size: 15px;
-      line-height: 25px;
+      line-height: 15px;
     }
   }
   @media (max-width: 1200px) {
