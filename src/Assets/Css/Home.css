@@ -35,7 +35,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
   }
   .slider-info-wrap .slider-info-content .slider-info-item .info-item-media img {
     position: absolute;
@@ -183,7 +183,7 @@
     .price {
     font-size: 13px;
     color: #ffffff;
-    line-height: 58px;
+    line-height: 38px;
     display: block;
     float: right;
     margin-right: 20px;
