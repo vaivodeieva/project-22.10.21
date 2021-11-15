@@ -296,3 +296,7 @@
       width: 49.99%;
   } */
 }
+
+.footer-menu-name:hover {
+  color: coral;
+}
