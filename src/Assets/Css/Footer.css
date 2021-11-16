@@ -297,6 +297,6 @@
   } */
 }
 
-.footer-menu-name:hover, .footer-call-to-action-title:hover {
+.footer-menu-name:hover, .footer-call-to-action-title:hover, ul li a:hover {
   color: coral;
 }
