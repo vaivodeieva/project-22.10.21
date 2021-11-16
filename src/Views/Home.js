@@ -1,9 +1,9 @@
 import '../Assets/Css/Home.css';
 import homepicture from '../Assets/Images/home-pic.png';
-import pic1 from '../Assets/Images/pic1.gif';
-import pic2 from '../Assets/Images/pic2.jpg';
-import pic3 from '../Assets/Images/pic3.gif';
-import pic4 from '../Assets/Images/pic4.gif';
+// import pic1 from '../Assets/Images/pic1.gif';
+// import pic2 from '../Assets/Images/pic2.jpg';
+// import pic3 from '../Assets/Images/pic3.gif';
+// import pic4 from '../Assets/Images/pic4.gif';
 
 function Home() {
 
@@ -17,7 +17,7 @@ function Home() {
 
                     <div className="slider-info-item">
                         <div className="info-item-media">
-                            <img src={pic1}/>
+                            {/* <img src={pic1}/> */}
                             <div className="info-item-text">
                                 <div className="info-price font-4"><span></span></div>
                                 <div className="info-temp font-4"><span>local temperature</span> some text</div>
@@ -35,7 +35,7 @@ function Home() {
 
                     <div className="slider-info-item">
                         <div className="info-item-media">
-                            <img src={pic2}/>
+                            {/* <img src={pic2}/> */}
                             <div className="info-item-text">
                                 <div className="info-price font-4"><span></span></div>
                                 <div className="info-temp font-4"><span>local temperature</span> some text</div>
@@ -52,7 +52,7 @@ function Home() {
                     </div>
                     <div className="slider-info-item">
                         <div className="info-item-media">
-                            <img src={pic3}/>
+                            {/* <img src={pic3}/> */}
                             <div className="info-item-text">
                                 <div className="info-price font-4"><span></span></div>
                                 <div className="info-temp font-4"><span>local temperature</span> some text</div>
@@ -69,7 +69,7 @@ function Home() {
                     </div>
                     <div className="slider-info-item">
                         <div className="info-item-media">
-                            <img src={pic4}/>
+                            {/* <img src={pic4}/> */}
                             <div className="info-item-text">
                                 <div className="info-price font-4"><span></span></div>
                                 <div className="info-temp font-4"><span>local temperature</span> some text</div>
