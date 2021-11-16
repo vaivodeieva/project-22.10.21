@@ -66,7 +66,9 @@ nav a:hover::after {
     transform: scaleX(1);
 }
 
-
+.eteam {
+    background-color: coral;
+}
 
 
 
