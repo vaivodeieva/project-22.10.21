@@ -1,3 +1,5 @@
+import '../Assets/Css/Categories.css';
+
 function Categories() {
 
     return (
