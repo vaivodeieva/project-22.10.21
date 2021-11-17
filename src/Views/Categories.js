@@ -1,4 +1,5 @@
 import '../Assets/Css/Categories.css';
+// import SettingsIcon from '@mui/icons-material/Settings';
 
 function Categories() {
 
