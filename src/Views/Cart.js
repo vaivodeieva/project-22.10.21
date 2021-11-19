@@ -1,137 +1,294 @@
+import '../Assets/Css/Cart.css';
+import $ from 'jquery';
+
+
+
 function Cart() {
+
+let cart;
+let p;
+let item;
+let itemCopy;
+let i;
+
+    // ************************************************
+// Shopping Cart API
+// ************************************************
+
+let shoppingCart = (function() {
+    // =============================
+    // Private methods and propeties
+    // =============================
+    cart = [];
+    
+    // Constructor
+    function Item(name, price, count) {
+      this.name = name;
+      this.price = price;
+      this.count = count;
+    }
+    
+    // Save cart
+    function saveCart() {
+      sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
+    }
+    
+      // Load cart
+    function loadCart() {
+      cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
+    }
+    if (sessionStorage.getItem("shoppingCart") != null) {
+      loadCart();
+    }
+    
+  
+    // =============================
+    // Public methods and propeties
+    // =============================
+    let obj = {};
+    
+    // Add to cart
+    obj.addItemToCart = function(name, price, count) {
+      for(let item in cart) {
+        if(cart[item].name === name) {
+          cart[item].count ++;
+          saveCart();
+          return;
+        }
+      }
+      let item = new Item(name, price, count);
+      cart.push(item);
+      saveCart();
+    }
+    // Set count from item
+    obj.setCountForItem = function(name, count) {
+      for(let i in cart) {
+        if (cart[i].name === name) {
+          cart[i].count = count;
+          break;
+        }
+      }
+    };
+    // Remove item from cart
+    obj.removeItemFromCart = function(name) {
+        for(let item in cart) {
+          if(cart[item].name === name) {
+            cart[item].count --;
+            if(cart[item].count === 0) {
+              cart.splice(item, 1);
+            }
+            break;
+          }
+      }
+      saveCart();
+    }
+  
+    // Remove all items from cart
+    obj.removeItemFromCartAll = function(name) {
+      for(let item in cart) {
+        if(cart[item].name === name) {
+          cart.splice(item, 1);
+          break;
+        }
+      }
+      saveCart();
+    }
+  
+    // Clear cart
+    obj.clearCart = function() {
+      cart = [];
+      saveCart();
+    }
+  
+    // Count cart 
+    obj.totalCount = function() {
+      let totalCount = 0;
+      for(let item in cart) {
+        totalCount += cart[item].count;
+      }
+      return totalCount;
+    }
+  
+    // Total cart
+    obj.totalCart = function() {
+      let totalCart = 0;
+      for(let item in cart) {
+        totalCart += cart[item].price * cart[item].count;
+      }
+      return Number(totalCart.toFixed(2));
+    }
+  
+    // List cart
+    obj.listCart = function() {
+      let cartCopy = [];
+      for(i in cart) {
+        item = cart[i];
+        itemCopy = {};
+        for(p in item) {
+          itemCopy[p] = item[p];
+  
+        }
+        itemCopy.total = Number(item.price * item.count).toFixed(2);
+        cartCopy.push(itemCopy)
+      }
+      return cartCopy;
+    }
+  
+    // cart : Array
+    // Item : Object/Class
+    // addItemToCart : Function
+    // removeItemFromCart : Function
+    // removeItemFromCartAll : Function
+    // clearCart : Function
+    // countCart : Function
+    // totalCart : Function
+    // listCart : Function
+    // saveCart : Function
+    // loadCart : Function
+    return obj;
+  })();
+  
+  
+  // *****************************************
+  // Triggers / Events
+  // ***************************************** 
+  // Add item
+  $('.add-to-cart').click(function(event) {
+    event.preventDefault();
+    let name = $(this).data('name');
+    let price = Number($(this).data('price'));
+    shoppingCart.addItemToCart(name, price, 1);
+    displayCart();
+  });
+  
+  // Clear items
+  $('.clear-cart').click(function() {
+    shoppingCart.clearCart();
+    displayCart();
+  });
+  
+  
+  function displayCart() {
+    let cartArray = shoppingCart.listCart();
+    let output = "";
+    for(let i in cartArray) {
+      output += "<tr>"
+        + "<td>" + cartArray[i].name + "</td>" 
+        + "<td>(" + cartArray[i].price + ")</td>"
+        + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+        + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
+        + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
+        + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+        + " = " 
+        + "<td>" + cartArray[i].total + "</td>" 
+        +  "</tr>";
+    }
+    $('.show-cart').html(output);
+    $('.total-cart').html(shoppingCart.totalCart());
+    $('.total-count').html(shoppingCart.totalCount());
+  }
+  
+  // Delete item button
+  
+  $('.show-cart').on("click", ".delete-item", function(event) {
+    let name = $(this).data('name')
+    shoppingCart.removeItemFromCartAll(name);
+    displayCart();
+  })
+  
+  
+  // -1
+  $('.show-cart').on("click", ".minus-item", function(event) {
+    let name = $(this).data('name')
+    shoppingCart.removeItemFromCart(name);
+    displayCart();
+  })
+  // +1
+  $('.show-cart').on("click", ".plus-item", function(event) {
+    let name = $(this).data('name')
+    shoppingCart.addItemToCart(name);
+    displayCart();
+  })
+  
+  // Item count input
+  $('.show-cart').on("change", ".item-count", function(event) {
+     let name = $(this).data('name');
+     let count = Number($(this).val());
+    shoppingCart.setCountForItem(name, count);
+    displayCart();
+  });
+  
+  displayCart();
+  
 
     return (
 
         <div>
-            <div className="wrapper">
-                <div className="d-flex align-items-center justify-content-between">
-                    <div className="d-flex flex-column">
-                        <div className="h3">My lists</div>
-                        <div className="text-uppercase">6 sublists</div>
-                    </div>
-                    <div className="ml-auto btn"><span className="fas fa-cog"></span></div>
-                    <div className="btn" id="sub"> + Add sublist </div>
-                </div>
-                <div className="notification alert alert-dismissible fade show text-white d-flex align-items-center my-3 text-justify" role="alert"> <span className="far fa-bell pr-2"></span> You've got 3 new items on your list and 7 new comments check it out! <button type="button" className="close text-white ml-auto" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"> Ok, Thanks </span> </button> </div>
-                <div id="table" className="bg-white rounded">
-                    <div className="d-md-flex align-items-md-center px-3 pt-3">
-                        <div className="d-flex flex-column">
-                            <div className="h4 font-weight-bold">Wedding lists</div>
-                            <div className="text-muted">400 items</div>
-                        </div>
-                        <div className="ml-auto d-flex align-items-center">
-                            <div className="editors"> <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8ZmFjZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" id="img1" alt="" /> <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" id="img2" alt="" /> <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" id="img3" alt="" /> </div>
-                            <div className="text-muted pl-md-0 pl-5"> + 7 editors </div>
-                        </div>
-                    </div>
-                    <hr />
-                    <div className="table-responsive">
-                        <table className="table activitites" />
-                        <thead>
-                            <tr>
-                                <th scope="col" className="text-uppercase header">item</th>
-                                <th scope="col" className="text-uppercase">Quantity</th>
-                                <th scope="col" className="text-uppercase">price each</th>
-                                <th scope="col" className="text-uppercase">total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="item">
-                                    <div className="d-flex"> <img src="https://images.unsplash.com/photo-1601479604588-68d9e6d386b5?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FuZGxlc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" />
-                                        <div className="pl-2"> Suspended Heart Candles <div className="text-uppercase new"><span className="fas fa-star"></span>new</div>
-                                            <div className="d-flex flex-column justify-content-center">
-                                                <div className="text-muted">Blue</div>
-                                                <div><a href="#"><span className="red text-uppercase"><span className="fas fa-comment pr-1"></span>add a comment</span></a> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>120</td>
-                                <td className="d-flex flex-column"><span className="red">$21.40</span> <del className="cross">$30.00</del> </td>
-                                <td className="font-weight-bold"> $249 <div className="close">&times;</div> <button className="d-flex justify-content-end btn border">+ Add to cart</button> </td>
-                            </tr>
-                            <tr>
-                                <td className="item">
-                                    <div className="d-flex align-items-start"> <img src="https://www.freepnglogos.com/uploads/corona-png-logo/corona-bottle-transparent-png-logo-27.png" alt="" />
-                                        <div> Wine Bottle Shaped in Gift Base <div className="text-uppercase new"><span className="fas fa-star"></span>new </div>
-                                            <div> <a href="#"> <span className="red text-uppercase"> <span className="fas fa-comment pr-1"></span> add a comment </span> </a> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>120</td>
-                                <td className="d-flex flex-column">$21.40 </td>
-                                <td className="font-weight-bold"> $249 <div className="close">&times;</div> <button className="d-flex justify-content-end align-items-end btn border">+ Add to cart</button> </td>
-                            </tr>
-                            <tr>
-                                <td className="item">
-                                    <div className="d-flex align-items-start"> <img src="https://www.freepnglogos.com/uploads/corona-png-logo/corona-bottle-transparent-png-logo-27.png" alt="" />
-                                        <div> Copper Moscow Mug <div className="text-uppercase new"><span className="fas fa-star"></span>new </div>
-                                            <div className="d-flex flex-column justify-content-center">
-                                                <div className="text-muted">Blue/Mute</div>
-                                                <div><a href="#"><span className="red text-uppercase"><span className="fas fa-comment pr-1"></span>add a comment</span></a> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>120</td>
-                                <td className="d-flex flex-column">$21.40 </td>
-                                <td className="font-weight-bold"> $249 <div className="close">&times;</div> <button className="d-flex justify-content-end btn border">+ Add to cart</button> </td>
-                            </tr>
-                            <tr>
-                                <td className="item">
-                                    <div className="d-flex align-items-start"> <img src="https://www.freepnglogos.com/uploads/corona-png-logo/corona-bottle-transparent-png-logo-27.png" alt="" />
-                                        <div> Wine Bottle Shaped in Gift Base <div className="d-md-flex align-items-md-center">
-                                            <div className="editors"> <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8ZmFjZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" id="commentor1" alt="" /> <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" id="commentor2" alt="" /> <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" id="commentor3" alt="" /> </div>
-                                            <div className="text-muted pl-md-5"> <span className="fas fa-comment"></span> <a href="#" className="comments text-muted"> + 7 comments </a> </div>
-                                        </div>
-                                            <div><a href="#"><span className="red text-uppercase"><span className="fas fa-comment pr-1"></span>add a comment</span></a> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>120</td>
-                                <td className="d-flex flex-column">$21.40 </td>
-                                <td className="font-weight-bold"> $249 <div className="close">&times;</div> <button className="d-flex justify-content-end btn border">+ Add to cart</button> </td>
-                            </tr>
-                        </tbody>
+            {/* <!-- Nav --> */}
+            <nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button>
                     </div>
                 </div>
-                <hr className="items" />
-                <div className="table-responsive">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" className="text-uppercase header">item</th>
-                                <th scope="col" className="text-uppercase">Quantity</th>
-                                <th scope="col" className="text-uppercase">price each</th>
-                                <th scope="col" className="text-uppercase">total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="item">
-                                    <div className="d-flex align-items-start"> <img src="https://www.freepnglogos.com/uploads/corona-png-logo/corona-bottle-transparent-png-logo-27.png" alt="" />
-                                        <div> Wine Bottle Shaped in Gift Base <div className="text-uppercase new"><span className="fas fa-star"></span>new </div>
-                                            <div><a href="#"><span className="red text-uppercase"><span className="fas fa-comment pr-1"></span>add a comment</span></a> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>120</td>
-                                <td className="d-flex flex-column">$21.40 </td>
-                                <td className="font-weight-bold"> $249 <div className="close">&times;</div> <button className="d-flex justify-content-end align-items-end btn border">+ Add to cart</button> </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </nav>
+
+            {/* <!-- Main --> */}
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="card" style={{width: '20rem'}}>
+                            <img class="card-img-top" src="http://www.azspagirls.com/files/2010/09/orange.jpg" alt="Card image cap"/>
+                            <div class ="card-block">
+                            <h4 class ="card-title">Orange</h4>
+                            <p class ="card-text">Price: $0.5</p>
+                            <a href="#" data-name="Orange" data-price="0.5" class ="add-to-cart btn btn-primary">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card" style={{width: '20rem'}}>
+                            <img class="card-img-top" src="http://images.all-free-download.com/images/graphicthumb/vector_illustration_of_ripe_bananas_567893.jpg" alt="Card image cap"/>
+                            <div class ="card-block">
+                            <h4 class ="card-title">Banana</h4>
+                            <p class ="card-text">Price: $1.22</p>
+                            <a href="#" data-name="Banana" data-price="1.22" class ="add-to-cart btn btn-primary">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card" style={{width: '20rem'}}>
+                            <img class="card-img-top" src="https://3.imimg.com/data3/IC/JO/MY-9839190/organic-lemon-250x250.jpg" alt="Card image cap"/>
+                            <div class ="card-block">
+                            <h4 class ="card-title">Lemon</h4>
+                            <p class ="card-text">Price: $5</p>
+                            <a href="#" data-name="Lemon" data-price="5" class ="add-to-cart btn btn-primary">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className="d-flex justify-content-between">
-                <div className="text-muted"> <button className="btn" type="button" data-toggle="collapse" data-target="#table" aria-expanded="false" aria-controls="table"> Hide <span className="fas fa-minus"></span> </button> </div>
-                <div className="d-flex flex-column justify-content-end align-items-end">
-                    <div className="d-flex px-3 pr-md-5 py-1 subtotal">
-                        <div className="px-4">Subtotal</div>
-                        <div className="h5 font-weight-bold px-md-2">$1,340</div>
+
+            <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="show-cart table">
+
+                            </table>
+                            <div>Total price: $<span class="total-cart"></span></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Order now</button>
+                        </div>
                     </div>
-                    <div className="text-muted tag"> +add all the items to cart <span className="fas fa-shopping-cart pl-1"></span> </div>
                 </div>
             </div>
         </div>
