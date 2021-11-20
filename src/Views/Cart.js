@@ -1,8 +1,6 @@
 import '../Assets/Css/Cart.css';
 import $ from 'jquery';
 
-
-
 function Cart() {
 
 let cart;
@@ -11,7 +9,6 @@ let item;
 let itemCopy;
 let i;
 
-   
 let shoppingCart = (function() {
     
     cart = [];
@@ -125,25 +122,11 @@ let shoppingCart = (function() {
       }
       return cartCopy;
     }
-  
-    // cart : Array
-    // Item : Object/Class
-    // addItemToCart : Function
-    // removeItemFromCart : Function
-    // removeItemFromCartAll : Function
-    // clearCart : Function
-    // countCart : Function
-    // totalCart : Function
-    // listCart : Function
-    // saveCart : Function
-    // loadCart : Function
+
     return obj;
   })();
   
-  
-  // *****************************************
-  // Triggers / Events
-  // ***************************************** 
+   
   // Add item
   $('.add-to-cart').click(function(event) {
     event.preventDefault();
