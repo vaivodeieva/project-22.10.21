@@ -21,23 +21,23 @@ function Aboutus() {
                                 <ul className="nav nav-tabs ">
                                     <li className="active">
                                         <a href="#tab_default_1" data-toggle="tab">
-                                            Company or Individual </a>
+                                            Company </a>
                                     </li>
                                     <li>
                                         <a href="#tab_default_2" data-toggle="tab">
-                                            Report title and Category </a>
+                                            Mission </a>
                                     </li>
                                     <li>
                                         <a href="#tab_default_3" data-toggle="tab">
-                                            Your Reports </a>
+                                            Goals </a>
                                     </li>
                                     <li>
                                         <a href="#tab_default_4" data-toggle="tab">
-                                            Documents </a>
+                                            Contact </a>
                                     </li>
                                     <li>
                                         <a href="#tab_default_5" data-toggle="tab">
-                                            TC </a>
+                                            Map </a>
                                     </li>
                                 </ul>
                                 <div className="tab-content">
@@ -46,7 +46,7 @@ function Aboutus() {
                                             <img src={pic1}/>
                                         </p>
                                         <p>
-                                            lorem
+                                        Grass smells good time to go zooooom bleghbleghvomit my furball really tie the room together. Ooh, are those your $250 dollar sandals? lemme use that as my litter box why can't i catch that stupid red dot pet my belly, you know you want to; seize the hand and shred it! for lay on arms while you're using the keyboard so ears back wide eyed yet suddenly go on wild-eyed crazy rampage. 
                                         </p>
                                     </div>
                                     <div className="tab-pane" id="tab_default_2">
