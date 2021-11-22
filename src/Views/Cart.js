@@ -92,7 +92,7 @@ function Cart() {
 
   return (
 
-    <div>
+    <div className="cart-container">
       <header id="site-header">
         <div className="container">
           <h1>Shopping cart <span>[</span> <em><a href="https://codepen.io/tag/rodeo-007" target="_blank">CodePen Challange</a></em> <span className="last-span is-open">]</span></h1>
