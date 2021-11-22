@@ -1,274 +1,234 @@
 import '../Assets/Css/Cart.css';
 import $ from 'jquery';
 
+
 function Cart() {
+  let check = false;
 
-let cart;
-let p;
-let item;
-let itemCopy;
-let i;
-
-let shoppingCart = (function() {
+  function changeVal(el) {
+    let qt = parseFloat(el.parent().children(".qt").html());
+    let price = parseFloat(el.parent().children(".price").html());
+    let eq = Math.round(price * qt * 100) / 100;
     
-    cart = [];
+    el.parent().children(".full-price").html( eq + "€" );
     
-    // Constructor
-    function Item(name, price, count) {
-      this.name = name;
-      this.price = price;
-      this.count = count;
-    }
-    
-    // Save cart
-    function saveCart() {
-      sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
-    }
-    
-      // Load cart
-    function loadCart() {
-      cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
-    }
-    if (sessionStorage.getItem("shoppingCart") != null) {
-      loadCart();
-    }
-    
-  
-    let obj = {};
-    
-    // Add to cart
-    obj.addItemToCart = function(name, price, count) {
-      for(let item in cart) {
-        if(cart[item].name === name) {
-          cart[item].count ++;
-          saveCart();
-          return;
-        }
-      }
-      let item = new Item(name, price, count);
-      cart.push(item);
-      saveCart();
-    }
-    // Set count from item
-    obj.setCountForItem = function(name, count) {
-      for(let i in cart) {
-        if (cart[i].name === name) {
-          cart[i].count = count;
-          break;
-        }
-      }
-    };
-    // Remove item from cart
-    obj.removeItemFromCart = function(name) {
-        for(let item in cart) {
-          if(cart[item].name === name) {
-            cart[item].count --;
-            if(cart[item].count === 0) {
-              cart.splice(item, 1);
-            }
-            break;
-          }
-      }
-      saveCart();
-    }
-  
-    // Remove all items from cart
-    obj.removeItemFromCartAll = function(name) {
-      for(let item in cart) {
-        if(cart[item].name === name) {
-          cart.splice(item, 1);
-          break;
-        }
-      }
-      saveCart();
-    }
-  
-    // Clear cart
-    obj.clearCart = function() {
-      cart = [];
-      saveCart();
-    }
-  
-    // Count cart 
-    obj.totalCount = function() {
-      let totalCount = 0;
-      for(let item in cart) {
-        totalCount += cart[item].count;
-      }
-      return totalCount;
-    }
-  
-    // Total cart
-    obj.totalCart = function() {
-      let totalCart = 0;
-      for(let item in cart) {
-        totalCart += cart[item].price * cart[item].count;
-      }
-      return Number(totalCart.toFixed(2));
-    }
-  
-    // List cart
-    obj.listCart = function() {
-      let cartCopy = [];
-      for(i in cart) {
-        item = cart[i];
-        itemCopy = {};
-        for(p in item) {
-          itemCopy[p] = item[p];
-  
-        }
-        itemCopy.total = Number(item.price * item.count).toFixed(2);
-        cartCopy.push(itemCopy)
-      }
-      return cartCopy;
-    }
-
-    return obj;
-  })();
-  
-   
-  // Add item
-  $('.add-to-cart').click(function(event) {
-    event.preventDefault();
-    let name = $(this).data('name');
-    let price = Number($(this).data('price'));
-    shoppingCart.addItemToCart(name, price, 1);
-    displayCart();
-  });
-  
-  // Clear items
-  $('.clear-cart').click(function() {
-    shoppingCart.clearCart();
-    displayCart();
-  });
-  
-  
-  function displayCart() {
-    let cartArray = shoppingCart.listCart();
-    let output = "";
-    for(let i in cartArray) {
-      output += "<tr>"
-        + "<td>" + cartArray[i].name + "</td>" 
-        + "<td>(" + cartArray[i].price + ")</td>"
-        + "<td><div className='input-group'><button className='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
-        + "<input type='number' className='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
-        + "<button className='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
-        + "<td><button className='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
-        + " = " 
-        + "<td>" + cartArray[i].total + "</td>" 
-        +  "</tr>";
-    }
-    $('.show-cart').html(output);
-    $('.total-cart').html(shoppingCart.totalCart());
-    $('.total-count').html(shoppingCart.totalCount());
+    changeTotal();      
   }
   
-  // Delete item button
+  function changeTotal() {
+    
+    let price = 0;
+    
+    $(".full-price").each(function(index){
+      price += parseFloat($(".full-price").eq(index).html());
+    });
+    
+    price = Math.round(price * 100) / 100;
+    let tax = Math.round(price * 0.05 * 100) / 100
+    let shipping = parseFloat($(".shipping span").html());
+    let fullPrice = Math.round((price + tax + shipping) *100) / 100;
+    
+    if(price == 0) {
+      fullPrice = 0;
+    }
+    
+    $(".subtotal span").html(price);
+    $(".tax span").html(tax);
+    $(".total span").html(fullPrice);
+  }
   
-  $('.show-cart').on("click", ".delete-item", function(event) {
-    let name = $(this).data('name')
-    shoppingCart.removeItemFromCartAll(name);
-    displayCart();
-  })
-  
-  
-  // -1
-  $('.show-cart').on("click", ".minus-item", function(event) {
-    let name = $(this).data('name')
-    shoppingCart.removeItemFromCart(name);
-    displayCart();
-  })
-  // +1
-  $('.show-cart').on("click", ".plus-item", function(event) {
-    let name = $(this).data('name')
-    shoppingCart.addItemToCart(name);
-    displayCart();
-  })
-  
-  // Item count input
-  $('.show-cart').on("change", ".item-count", function(event) {
-     let name = $(this).data('name');
-     let count = Number($(this).val());
-    shoppingCart.setCountForItem(name, count);
-    displayCart();
+  $(document).ready(function(){
+    
+    $(".remove").click(function(){
+      let el = $(this);
+      el.parent().parent().addClass("removed");
+      window.setTimeout(
+        function(){
+          el.parent().parent().slideUp('fast', function() { 
+            el.parent().parent().remove(); 
+            if($(".product").length == 0) {
+              if(check) {
+                $("#cart").html("<h1>The shop does not function, yet!</h1><p>If you liked my shopping cart, please take a second and heart this Pen on <a href='https://codepen.io/ziga-miklic/pen/xhpob'>CodePen</a>. Thank you!</p>");
+              } else {
+                $("#cart").html("<h1>No products!</h1>");
+              }
+            }
+            changeTotal(); 
+          });
+        }, 200);
+    });
+    
+    $(".qtPlus").click(function(){
+      $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
+      
+      $(this).parent().children(".full-price").addClass("added");
+      
+      let el = $(this);
+      window.setTimeout(function(){el.parent().children(".full-price").removeClass("added"); changeVal(el);}, 150);
+    });
+    
+    $(".qt-minus").click(function(){
+      
+      let child = $(this).parent().children(".qt");
+      
+      if(parseInt(child.html()) > 1) {
+        child.html(parseInt(child.html()) - 1);
+      }
+      
+      $(this).parent().children(".full-price").addClass("minused");
+      
+      let el = $(this);
+      window.setTimeout(function(){el.parent().children(".full-price").removeClass("minused"); changeVal(el);}, 150);
+    });
+    
+    window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
+    
+    $(".btn").click(function(){
+      check = true;
+      $(".remove").click();
+    });
   });
-  
-  displayCart();
-  
 
-    return (
 
-        <div>
-            {/* <!-- Nav --> */}
-            <nav className="navbar navbar-inverse bg-inverse fixed-top bg-faded">
-                <div className="row">
-                    <div className="col">
-                        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span className="total-count"></span>)</button><button className="clear-cart btn btn-danger">Clear Cart</button>
-                    </div>
-                </div>
-            </nav>
+  return (
 
-            {/* <!-- Main --> */}
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <div className="card" style={{width: '20rem'}}>
-                            <img className="card-img-top" src="http://www.azspagirls.com/files/2010/09/orange.jpg" alt="Card image cap"/>
-                            <div className ="card-block">
-                            <h4 className ="card-title">Orange</h4>
-                            <p className ="card-text">Price: $0.5</p>
-                            <a href="#" data-name="Orange" data-price="0.5" className ="add-to-cart btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card" style={{width: '20rem'}}>
-                            <img className="card-img-top" src="http://images.all-free-download.com/images/graphicthumb/vector_illustration_of_ripe_bananas_567893.jpg" alt="Card image cap"/>
-                            <div className ="card-block">
-                            <h4 className ="card-title">Banana</h4>
-                            <p className ="card-text">Price: $1.22</p>
-                            <a href="#" data-name="Banana" data-price="1.22" className ="add-to-cart btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card" style={{width: '20rem'}}>
-                            <img className="card-img-top" src="https://3.imimg.com/data3/IC/JO/MY-9839190/organic-lemon-250x250.jpg" alt="Card image cap"/>
-                            <div className ="card-block">
-                            <h4 className ="card-title">Lemon</h4>
-                            <p className ="card-text">Price: $5</p>
-                            <a href="#" data-name="Lemon" data-price="5" className ="add-to-cart btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-lg" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Cart</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <table className="show-cart table">
-
-                            </table>
-                            <div>Total price: $<span className="total-cart"></span></div>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Order now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div>
+      <header id="site-header">
+        <div className="container">
+          <h1>Shopping cart <span>[</span> <em><a href="https://codepen.io/tag/rodeo-007" target="_blank">CodePen Challange</a></em> <span className="last-span is-open">]</span></h1>
         </div>
+      </header>
 
-    )
+      <div className="container">
+
+        <section id="cart">
+          <article className="product">
+            <header>
+              <a className="remove">
+                <img src="http://www.astudio.si/preview/blockedwp/wp-content/uploads/2012/08/1.jpg" alt=""/>
+
+                <h3>Remove product</h3>
+              </a>
+            </header>
+
+            <div className="content">
+
+              <h1>Lorem ipsum</h1>
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, numquam quis perspiciatis ea ad omnis provident laborum dolore in atque.
+
+              <div title="You have selected this product to be shipped in the color yellow." style={{top: 0}} className="color yellow"></div>
+              <div style={{top: '43px'}} className="type small">XXL</div>
+            </div>
+
+            <footer className="content">
+              <span className="qt-minus">-</span>
+              <span className="qt">2</span>
+              <span className="qtPlus">+</span>
+
+              <h2 className="full-price">
+                29.98€
+              </h2>
+
+              <h2 className="price">
+                14.99€
+              </h2>
+            </footer>
+          </article>
+
+          <article className="product">
+            <header>
+              <a className="remove">
+                <img src="http://www.astudio.si/preview/blockedwp/wp-content/uploads/2012/08/3.jpg" alt=""/>
+
+                <h3>Remove product</h3>
+              </a>
+            </header>
+
+            <div className="content">
+
+              <h1>Lorem ipsum dolor</h1>
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, numquam quis perspiciatis ea ad omnis provident laborum dolore in atque.
+
+              <div title="You have selected this product to be shipped in the color red." style={{top: 0}} className="color red"></div>
+              <div title="You have selected this product to be shipped sized Small." style={{top: '43px'}} className="type small">Small</div>
+            </div>
+
+            <footer className="content">
+
+              <span className="qt-minus">-</span>
+              <span className="qt">1</span>
+              <span className="qtPlus">+</span>
+
+              <h2 className="full-price">
+                79.99€
+              </h2>
+
+              <h2 className="price">
+                79.99€
+              </h2>
+            </footer>
+          </article>
+
+          <article className="product">
+            <header>
+              <a className="remove">
+                <img src="http://www.astudio.si/preview/blockedwp/wp-content/uploads/2012/08/5.jpg" alt="" />
+
+                <h3>Remove product</h3>
+              </a>
+            </header>
+
+            <div className="content">
+
+              <h1>Lorem ipsum dolor ipsdu</h1>
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, numquam quis perspiciatis ea ad omnis provident laborum dolore in atque.
+
+              <div title="You have selected this product to be shipped in the color blue." style={{top: 0}} className="color blue"></div>
+              <div style={{top: '43px'}} className="type small">Large</div>
+            </div>
+
+            <footer className="content">
+
+              <span className="qt-minus">-</span>
+              <span className="qt">3</span>
+              <span className="qtPlus">+</span>
+
+              <h2 className="full-price">
+                53.99€
+              </h2>
+
+              <h2 className="price">
+                17.99€
+              </h2>
+            </footer>
+          </article>
+
+        </section>
+
+      </div>
+
+      <footer id="site-footer">
+        <div className="container clearfix">
+
+          <div className="left">
+            <h2 className="subtotal">Subtotal: <span>163.96</span>€</h2>
+            <h3 className="tax">Taxes (5%): <span>8.2</span>€</h3>
+            <h3 className="shipping">Shipping: <span>5.00</span>€</h3>
+          </div>
+
+          <div className="right">
+            <h1 className="total">Total: <span>177.16</span>€</h1>
+            <a className="btn">Checkout</a>
+          </div>
+
+        </div>
+      </footer>
+    </div>
+
+  )
 }
 
 export default Cart;
