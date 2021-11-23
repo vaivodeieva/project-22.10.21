@@ -43,7 +43,7 @@ function Aboutus() {
                                 <div className="tab-content">
                                     <div className="tab-pane active" id="tab_default_1">
                                         <p>
-                                            <img src={pic1} />
+                                            <img src={pic5} />
                                         </p>
                                         <p>
                                             Grass smells good time to go zooooom bleghbleghvomit my furball really tie the room together. Ooh, are those your $250 dollar sandals? lemme use that as my litter box why can't i catch that stupid red dot pet my belly, you know you want to; seize the hand and shred it! for lay on arms while you're using the keyboard so ears back wide eyed yet suddenly go on wild-eyed crazy rampage.
