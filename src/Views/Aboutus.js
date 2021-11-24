@@ -101,6 +101,9 @@ function Aboutus() {
                         </div>
 
                     </div>
+                    <div className="col-md-6">
+                        <h3>How to find us</h3>
+                    </div>
                 </div>
             </div>
 
