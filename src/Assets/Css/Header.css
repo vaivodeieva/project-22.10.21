@@ -70,6 +70,10 @@ nav a:hover::after {
     background-color: coral;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 
 
 
