@@ -6,7 +6,6 @@ function Page404() {
 
         <div className="container404">
             <h1>404 Error Page</h1>
-            <p className="zoom-area"><b>CSS</b> animations to make a cool 404 page. </p>
             <section className="error-container">
                 <span>4</span>
                 <span><span className="screen-reader-text">0</span></span>
