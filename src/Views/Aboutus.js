@@ -10,12 +10,10 @@ function Aboutus() {
     return (
 
         <div>
-
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
                         <h3>Reports</h3>
-
                         <div className="tabbable-panel">
                             <div className="tabbable-line">
                                 <ul className="nav nav-tabs ">
@@ -94,12 +92,10 @@ function Aboutus() {
                                         <p>
                                             Consectetur deleniti quisquam natus eius commodi.
                                         </p>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div className="col-md-6">
                         <h3>How to find us</h3>
@@ -132,9 +128,6 @@ function Aboutus() {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     )
 }
